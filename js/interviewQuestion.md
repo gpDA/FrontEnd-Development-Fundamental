@@ -1,5 +1,8 @@
 # interviewQuestion
 
+
+
+# TODO:
 ### 1. `typeof` vs. `instanceof`
 
 ##### simple comparison
@@ -67,6 +70,9 @@ const isString = (str) => {
 }
 ```
 
+
+
+# TODO:
 ### 2. forEach vs for loop vs for ... in
 
 ##### simple comparison
@@ -154,6 +160,9 @@ for (let [key, value] of iterable) {
 "c"
 ```
 
+
+
+# TODO:
 ### 3. What is promise in javascript
 
 ##### what is promise
@@ -163,6 +172,106 @@ for (let [key, value] of iterable) {
 WRITING ASYNC CODE IN PLAIN CALLBACK SYTLE IS HARD TO DO CORRECTLY
 it is easy to froget to check for an error or to allow an unexpected exception
 **
+
+##### why use promise 1. prevent callback hell 2. prevent limitation of try ... catch
+
+1. 콜백 헬
+```javascript
+const fs = require('fs');
+
+// first callback
+fs.readFile('a.txt', function(err,dataA){
+  if(err) console.error(err);
+  // second callback
+  fs.readFile('b.txt', function(err,dataB){
+    if(err) console.log(err);
+    // third callback
+    fs.read.readFile('c.txt', function... )
+  })
+})
+```
+==> 중괄호로 둘러싸여 끝없이 중첩된 삼각형의 코드 블록들...
+
+2. limitation of try catch
+
+```javascript
+const fs = require('fs');
+function readSketchyFile(){
+  try{
+    fs.readFile('does_not_exist.txt', function(err,data){
+      if(err) throw err;
+    });
+  }catch(err){
+    console.log('warning: minor issue occurred, program continuing');
+  }
+}
+
+readSketchyFile();
+```
+문제점 2가지
+==> 1. 작동을 하지 않는다. try ... catch 블록은 readSketchyFile 함수 안에 있지만, 정작 예외는 fs.readFile이 콜백으로 호출하는 익명 함수 안에서 일어났다
+==> 2. 콜백이 우연히 두 번 호출되거나 / 아예 호출되지 않는 경우르 방지하는 장치가 없다. (js는 콜백이 정확히 한 번만 호출될 것을 보장하지 않는다)
+
+##### Promise with Callback
+
+프미스가 콜백을 대체하는 것은 아니다. 사실 프로미스에서도 콜백을 사용한다.
+프로미스는 콜백을 예층 가능한 패턴으로 사용할 수 있게 하며, 프로미스 없이 콜백만 사용했을 때 나타날 수 있는 엉뚱한 현상 / 버그를 해결
+프로미스는 객체이므로 어디든 전달 할 수 있다 (콜백에 비해 간편한 장점)
+
+##### Promise Chain
+
+```javascript
+funciton launch(){
+  ...
+}
+// 이 함수를 카운트다운에 쉽게 묶을수 있다
+const c = new Countdown(5);
+  .on('tick', i => console.log(i + '...'));
+
+c.go()
+  .then(launch)
+  .then(function(msg)){
+    console.log(msg);
+  .catch(function(err){
+    console.error("we have a problem...")
+  })
+  }
+```
+==> 프로미스 체인을 사용하면 모든 단계에서 에러를 캐치할 필요가 없다.
+체인 어디에서든 에러가 생기면 체인 전체가 멈추고 catch 핸들러가 동작
+
+##### 결정되지 않는 프라미스 방지하기
+프로미스는 비동기적 코드를 단순화하고 / 콜백이 두 번 이상 실행되는 문제를 방지
+하지만 resolve나 reject를 호출하는 걸 잊어서 프로미스가 결정되지 않는 문제까지 자동으로 해결하지 못한다.
+해결 방법!! 프로미스에 타임아웃을 건다.
+
+프로미스에 타임아웃을 건다
+```javascript
+function addTimeout(fn, timeout){
+  if(timeout === undefined) timeout = 1000;
+  return function(...args){
+    return new Promise(function(resolve, reject){
+      const tid = setTimeout(reject, timout, new Error("promise timed out"));
+      fn(...args)
+        .then(function(...args){
+          clearTimeout(tid);
+          resolve(...args);
+        })
+        .catch(function(...args){
+          clearTimeout(tid);
+          reject(...args);
+        })
+    })
+  }
+}
+```
+
+호출
+```javascript
+c.go()
+  .then(addtIMEOUT(LAUNCH, 11*1000));
+```
+
 
 ##### SOLUTION WITH PROMISE
 `Promise` wraps an asynchronous action in an object,
@@ -177,7 +286,7 @@ The `executor` function is executed immediately by the Promise implmentation, pa
 `Promise` is a proxy for a value not necessarily known when the promise is created. It allows you to associate handlers with an asynchronous action's eventual success value or failure reason. 
 This lets asynchronous methos return values like synchronous methods : instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some poin in the future.
 
-`Promise` is in one of these states
+`Promise` is in one of these states (ONLY ONCE ... (settled) FULFILLED PROMISE cannot become REJECTED PROMISE)
 1. pending : initial state; (neither fulfilled nor rejected)
 2. fulfilled : opeartion completed successfully
 3. rejected : operation failed
@@ -357,6 +466,7 @@ MUCH Like with the `catch` clause for the `try` statement, control will continu 
 
 
 
+# TODO:
 ### 4. What is JavaScript Object Properties
 
 ##### what is Properties
@@ -379,10 +489,16 @@ var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
 delete person.age;   // or delete person["age"]; 
 ```
 
+
+
+# TODO:
 ### 5. JavaScript call vs. apply vs. bind vs. reduce
 CALL - 
 with the `call()` method, you cna write a
 
+
+
+# TODO:
 ### 6. What is callback
 -
 "CALL US BACK"
