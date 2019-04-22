@@ -359,7 +359,7 @@ fs.readFile(fname, function(err,data){
 ==> 콜백에서 가장 먼저 하는 일은 err이 true 인지 확인
 promise를 사용하지 않으면 오류 우선 콜백은 노드 개발의 표준!!
 
-
+dfs
 
 # TODO: 진짜 투두
 https://davidwalsh.name/es6-generators
