@@ -40,7 +40,7 @@ UNMOUNTING
     this method is called when a component is being removed from the DOM
 
 1) componentWillUnmount()
-
+ss
 
 setState()
 - enqueues changes to the component state and tells React that this component and its children need to be re-rendered with the updated state
