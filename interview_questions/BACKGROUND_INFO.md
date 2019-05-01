@@ -179,7 +179,7 @@ Multi Thread
 ### What is Recursion
 - functions calls itself directly or indirectly 
     (TOH / Inorder / Preorder Traversals)
-    
+
 
 
 
@@ -193,7 +193,3 @@ Multi Thread
 6. What is synchronized
 7. Microservice architecture vs Monolithic architecture
 8. Symmetric cryptography vs Asymmetric cryptography (public key)
-9. System designs
-10. Design ATM machine
-11. implement hashtable
-13. What is Recursion
