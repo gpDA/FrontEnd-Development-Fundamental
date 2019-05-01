@@ -12,5 +12,3 @@
 10. implment hashtable
 11. How to get minimum value in SQL
 12. What is Recursion
-13. What is Redis
-14. How to implement Distributed Cache
