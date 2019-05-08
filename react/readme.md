@@ -14,3 +14,6 @@
 
 ### How getDerivedStateFromProps works
 
+
+### What is React composition
+https://www.robinwieruch.de/react-component-composition/
