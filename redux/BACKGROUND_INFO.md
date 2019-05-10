@@ -1,7 +1,7 @@
 # BACKGROUND INFO
 
 
-# TODO: 1.
+#TODO: 1.
 ### Redux vs. Flux
 Redux
 _
@@ -18,35 +18,43 @@ _
 - Flux design pattern allows for MANY stores that each focus on a specific set of data
 
 
-# TODO: 2.
+#TODO: 2.
 ### What is Redux
 Redux Rule
-
+_
 - application state should be stored in a single immutable object
     - We will update this state object by replacing it entirely
 
 
-# TODO: 3.
+#TODO: 3.
 ### What is Redux actions
 Actions
 _
 - In order to do this, we will need instructions about "what changes" `actions`
+
 - `actions` provide : 1) instructions about what should change in the application state along with necessary data to make those changes
+
 - `actions` are the only way to update the state of a Redux application
+
 - We can also look at them like receipts about the history of what has changed over time
+
 - Most state changes also required some data : this data --> `action's payload`
     - For example, when we dispatch an action like RATE_COLOR, we will need to know 1) what color to rate 2) what rating to apply to that color ...
 
 
-# TODO: 4.
+#TODO: 4.
 ### What is Redux reducers
 Reducers
 _
 - Entire state is stored in a single object
+
 - Redux acheives modularity via functions
     - Functions are used to update parts of the state tree; functions are called `reducers`
+
 - `reducers` are functions that take the current state along with an action as arguments and use them to create and return a new state
+
 - We can compose reducers into one reducer that can handle updating the entire state of our app given any action
+
 - Each function is focused on a specific part of our state tree. FOR EXAMPLE,
 
 ```javascript
@@ -107,7 +115,7 @@ const store = createStore(
 ```
 
 
-# TODO: 5.
+#TODO: 5.
 ### What is Redux Dispatching actions
 Dispatching actions
 _
@@ -122,6 +130,7 @@ store.dispatch({
     timestamp: ...
 })
 ```
+
 - Actions creators simplify the task of dispatching actions; we only need to
 1) call a function
 2) send it the necessary data
@@ -159,7 +168,7 @@ store.dispatch(sortColors("title"))
 ```
 
 
-# TODO: 6.
+#TODO: 6.
 ### What is Redux Subscription to Stores
 Subscribing to Stores
 _
@@ -173,12 +182,12 @@ store.subscribe(() =>
 ```
 
 
-# TODO: 1. 
+#TODO: 1. 
 *No side effect in Reducers*
 - Generating random data, calling APIs, and other asynchronous processes should be handled outside of reducers
 
 
-# TODO: 2. 
+#TODO: 2. 
 *Use of constants instead of a string*
 ```javascript
 const constants = {
@@ -195,16 +204,16 @@ import C from "./constants"
 ```
 
 
-# TODO: 3. 
+#TODO: 3. 
 *ES7 object spread operator allows us to assign the value of the current state to a new object*
 
 
-# TODO: 4.
+#TODO: 4.
 *Treat State as an Immutable Object*
 NO state.push({}) OR state[index].rating
 
 
-# TODO: 5.
+#TODO: 5.
 *getState method will return the present application state*
 ```javascript
 import {createStore} from 'redux'

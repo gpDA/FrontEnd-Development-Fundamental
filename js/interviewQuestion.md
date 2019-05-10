@@ -2,11 +2,13 @@
 
 
 
-# TODO:
-### 1. `typeof` vs. `instanceof`
+#TODO: 14.
+### `typeof` vs. `instanceof`
 
-##### simple comparison
-1. use `instanceof` of custom type
+simple comparison
+_
+- use `instanceof` of custom type
+
 ```javascript
 var ClassFirst = function () {};
 var ClassSecond = function () {};
@@ -18,7 +20,8 @@ instance instanceof ClassFirst; // true
 instance instanceof ClassSecond; // false 
 ```
 
-2. use `typeof` for simple built in types
+- use `typeof` for simple built in types
+
 ```javascript
 'example string' instanceof String; // false
 typeof 'example string' == 'string'; // true
@@ -36,13 +39,18 @@ function() {} instanceof Function; // true
 typeof function() {} == 'function'; // true
 ```
 
-BONUS - 
+
+- Bonus
+
 ```javascript
 typeof null; // object
 ```
 
-##### what is `typeof`
-`typeof` is a unary operator that returns a string indicating the type of the unevaluated operand
+what is `typeof`
+_
+
+- `typeof` is a unary operator that returns a string indicating the type of the unevaluated operand
+
 ```javascript
 const a = "I'm a string primitive";
 const b = new String("I'm a String Object");
@@ -51,9 +59,12 @@ typeof a; --> returns 'string'
 typeof b; --> returns 'object'
 ```
 
-##### what is `instanceof`
-`instanceof` is a binary operator, accepting an object and a constructor.
+what is `instanceof`
+_
+
+- `instanceof` is a binary operator, accepting an object and a constructor.
 It return a boolean indicating whether or not the object has the given constructor in its prototype chain
+
 ```javascript
 const a = "I'm a string primitive";
 const b = new String("I'm a String Object");
@@ -62,8 +73,11 @@ a instanceof String; --> returns false
 b instanceof String; --> returns true
 ```
 
-##### how to properly test for strings?
-need to detect both primitive strings and Strings objects as values of the object
+How to properly test for strings?
+-
+
+- need to detect both primitive strings and Strings objects as values of the object
+
 ```javascript
 const isString = (str) => {
   return typeof str === 'string' || str instanceof String
@@ -72,27 +86,35 @@ const isString = (str) => {
 
 
 
-# TODO:
-### 2. forEach vs for loop vs for ... in
+#TODO: 15.
+### forEach vs for loop vs for ... in
 
-##### simple comparison
+Simple Comparison
+_
 1. Performance : `forEach` is little slower than `for loop`
 2. Usability : There is no way we can break / return from the callback `forEach`
 3. Browser compatibility : `forEach` is not supported in IE < 9
 
-##### what is forEach
+what is forEach
+_
 1. `forEach` is a method on the `Array` prototype. It iterates through each element of an array and passes it to a callback function
 2. `forEach` can only be used on Arrays, Maps, and Sets
 
-##### what is for loop
+What is for loop
+_
 1. `for` statment does not necessarily involve an array
 
-##### what is for ... in
+what is for ... in
+_
 1. `for ... in` is used to iterate over the enumerable properties of objects.
     (every property in an object will ahve an `Enumerable` value
         - if that value is set to `true`, then the property is `Enumerable`)
 
-OBJECTS - 
+#TODO: 16.
+### JavaScript Different Data Types
+
+Objects
+_
 PRINT `key` and `value` pair
 ```javascript
 const obj = {  
@@ -111,8 +133,11 @@ for (let elem in obj) {
 // d = 4
 
 ```
-ARRAYS - 
-DON'T FORGET, ARRAYS are objects too (which means we can also use `for ... in` loop on Arrays)
+
+
+Arrays
+_
+- DON'T FORGET, ARRAYS are objects too (which means we can also use `for ... in` loop on Arrays)
 ```javascript
 const arr = ['cat', 'dog', 'fish'];
 for (let i in arr) {  
@@ -123,8 +148,10 @@ for (let i in arr) {
 // fish
 ```
 
-STRING -
-Since each character in a stirng has an index, we can even use `for ... in` on strings
+String
+_
+- Since each character in a stirng has an index, we can even use `for ... in` on strings
+
 ```javascript
 const string = 'hello';
 for (let character in string) {  
@@ -137,7 +164,9 @@ for (let character in string) {
 // o
 ```
 
-MAP - (ES6 in 2015)
+Map (ES6 in 2015)
+_
+
 ```javascript
 let iterable = new Map([['a', 1], ['b', 2], ['c', 3]]);
 for (let entry of iterable) {
@@ -162,20 +191,35 @@ for (let [key, value] of iterable) {
 
 
 
-# TODO:
-### 3. What is promise in javascript
+#TODO: 17.
+### What is promise in JavaScript
 
-##### what is promise
-`Promise` object represents the eventual completion (or failure) xof an asynchronous operation, and its resulting value
+What is Promise
+_
+- `Promise` object represents the eventual completion (or failure) xof an asynchronous operation, and its resulting value
 
-**
-WRITING ASYNC CODE IN PLAIN CALLBACK SYTLE IS HARD TO DO CORRECTLY
+- WRITING ASYNC CODE IN PLAIN CALLBACK SYTLE IS HARD TO DO CORRECTLY
 it is easy to froget to check for an error or to allow an unexpected exception
-**
 
-##### why use promise 1. prevent callback hell 2. prevent limitation of try ... catch
 
-1. 콜백 헬
+Why use Promise
+_
+1. prevent callback hell 
+2. prevent limitation of try ... catch
+
+
+#TODO: 18.
+### Promise with Callback
+
+- 프로미스가 콜백을 대체하는 것은 아니다. 사실 프로미스에서도 콜백을 사용한다.
+
+- 프로미스는 콜백을 예층 가능한 패턴으로 사용할 수 있게 하며, 프로미스 없이 콜백만 사용했을 때 나타날 수 있는 엉뚱한 현상 / 버그를 해결
+
+- 프로미스는 객체이므로 어디든 전달 할 수 있다 (콜백에 비해 간편한 장점)
+
+콜백 헬
+_
+
 ```javascript
 const fs = require('fs');
 
@@ -192,7 +236,8 @@ fs.readFile('a.txt', function(err,dataA){
 ```
 ==> 중괄호로 둘러싸여 끝없이 중첩된 삼각형의 코드 블록들...
 
-2. limitation of try catch
+Limitation of Try and Catch
+_
 
 ```javascript
 const fs = require('fs');
@@ -208,17 +253,15 @@ function readSketchyFile(){
 
 readSketchyFile();
 ```
-문제점 2가지
-==> 1. 작동을 하지 않는다. try ... catch 블록은 readSketchyFile 함수 안에 있지만, 정작 예외는 fs.readFile이 콜백으로 호출하는 익명 함수 안에서 일어났다
-==> 2. 콜백이 우연히 두 번 호출되거나 / 아예 호출되지 않는 경우르 방지하는 장치가 없다. (js는 콜백이 정확히 한 번만 호출될 것을 보장하지 않는다)
 
-##### Promise with Callback
+- 문제점 2가지
 
-프미스가 콜백을 대체하는 것은 아니다. 사실 프로미스에서도 콜백을 사용한다.
-프로미스는 콜백을 예층 가능한 패턴으로 사용할 수 있게 하며, 프로미스 없이 콜백만 사용했을 때 나타날 수 있는 엉뚱한 현상 / 버그를 해결
-프로미스는 객체이므로 어디든 전달 할 수 있다 (콜백에 비해 간편한 장점)
+  1. 작동을 하지 않는다. try ... catch 블록은 readSketchyFile 함수 안에 있지만, 정작 예외는 fs.readFile이 콜백으로 호출하는 익명 함수 안에서 일어났다
 
-##### Promise Chain
+  2. 콜백이 우연히 두 번 호출되거나 / 아예 호출되지 않는 경우르 방지하는 장치가 없다. (js는 콜백이 정확히 한 번만 호출될 것을 보장하지 않는다)
+
+#TODO: 19.
+### Promise Chain
 
 ```javascript
 funciton launch(){
@@ -237,15 +280,21 @@ c.go()
   })
   }
 ```
-==> 프로미스 체인을 사용하면 모든 단계에서 에러를 캐치할 필요가 없다.
-체인 어디에서든 에러가 생기면 체인 전체가 멈추고 catch 핸들러가 동작
 
-##### 결정되지 않는 프라미스 방지하기
-프로미스는 비동기적 코드를 단순화하고 / 콜백이 두 번 이상 실행되는 문제를 방지
-하지만 resolve나 reject를 호출하는 걸 잊어서 프로미스가 결정되지 않는 문제까지 자동으로 해결하지 못한다.
+- 프로미스 체인을 사용하면 모든 단계에서 에러를 캐치할 필요가 없다.
+
+- 체인 어디에서든 에러가 생기면 체인 전체가 멈추고 catch 핸들러가 동작
+
+#TODO: 20.
+### 결정되지 않는 프라미스 방지하기
+
+- 프로미스는 비동기적 코드를 단순화하고 / 콜백이 두 번 이상 실행되는 문제를 방지
+
+- 하지만 resolve나 reject를 호출하는 걸 잊어서 프로미스가 결정되지 않는 문제까지 자동으로 해결하지 못한다.
 해결 방법!! 프로미스에 타임아웃을 건다.
 
-프로미스에 타임아웃을 건다
+- 프로미스에 타임아웃을 건다
+
 ```javascript
 function addTimeout(fn, timeout){
   if(timeout === undefined) timeout = 1000;
@@ -266,38 +315,46 @@ function addTimeout(fn, timeout){
 }
 ```
 
-호출
+- 호출
+
 ```javascript
 c.go()
   .then(addtIMEOUT(LAUNCH, 11*1000));
 ```
 
+#TODO: 21.
+### Solution with Promise
 
-##### SOLUTION WITH PROMISE
-`Promise` wraps an asynchronous action in an object,
-which can be passed around and told to do certain things when the action finishes or fails
+What is Promise
+_
 
-CHECKOUT `http://www.promisejs.org/`
+- `Promise` wraps an asynchronous action in an object, which can be passed around and told to do certain things when the action finishes or fails
 
-Parmeters `executor`- 
+- CHECKOUT `http://www.promisejs.org/`
+
+- Parmeters `executor`
 `executor` is a function that is passed with the arguments resolve and reject.
 The `executor` function is executed immediately by the Promise implmentation, passing `resolve` and `reject` functions
 
-`Promise` is a proxy for a value not necessarily known when the promise is created. It allows you to associate handlers with an asynchronous action's eventual success value or failure reason. 
+- `Promise` is a proxy for a value not necessarily known when the promise is created. It allows you to associate handlers with an asynchronous action's eventual success value or failure reason. 
 This lets asynchronous methos return values like synchronous methods : instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some poin in the future.
 
-`Promise` is in one of these states (ONLY ONCE ... (settled) FULFILLED PROMISE cannot become REJECTED PROMISE)
+- `Promise` is in one of these states (ONLY ONCE ... (settled) FULFILLED PROMISE cannot become REJECTED PROMISE)
+
 1. pending : initial state; (neither fulfilled nor rejected)
+
 2. fulfilled : opeartion completed successfully
+
 3. rejected : operation failed
 
-==> A pending promise can either be `fulfilled` with a value, or `rejected` with a reason (error). When either of these options happens, the associated handlers queued up by a promise's then method are called. 
+- A pending promise can either be `fulfilled` with a value, or `rejected` with a reason (error). When either of these options happens, the associated handlers queued up by a promise's then method are called. 
 
-**
-As the `Promise.prototype.then()` and `Promise.prototype.catch()` methods reutnr promises, they can be chained
-**
+- As the `Promise.prototype.then()` and `Promise.prototype.catch()` methods return promises, they can be chained
 
-METHODS -
+
+Methods
+_
+
 1. `Promise.all(iterable)`
 returns a promise that either FULFILLS when all of the promises in the iterable
 OR
@@ -329,7 +386,9 @@ To create a promise object
 -
 we call the `Promise` constructorm giving it a function that initializes the async action
 
-CREATING A PROMISE
+Creating a Promise
+_
+
 ```javascript
 function myAsyncFunction(url) {
   return new Promise((resolve, reject) => {
@@ -387,7 +446,9 @@ get("example/data.txt").then(function(text){
 });
 ```
 
-LOADING AN IMAGE WITH XHR -
+Loading an image with XHR
+-
+
 ```javascript
   <script>
   function imgLoad(url) {
@@ -437,7 +498,9 @@ LOADING AN IMAGE WITH XHR -
   </script>
 ```
 
-LOADING until loads
+Loading until Loads
+_
+
 ```javascript
 function showMessage(msg){
   var elt = document.createElement("div");
@@ -466,24 +529,32 @@ MUCH Like with the `catch` clause for the `try` statement, control will continu 
 
 
 
-# TODO:
-### 4. What is JavaScript Object Properties
+#TODO: 22.
+### What is JavaScript Object Properties
 
-##### what is Properties
-`properties` are the values associated with a JavaScript object
+What is Properties
+_
 
-ACCESSING JS Properties
+- `properties` are the values associated with a JavaScript object
+
+Accessing JS Properties
+_
+
 ```javascript
 objectName.property         // person.age
 objectName["property"]      // person["age"]
 ```
 
-ADDING New Properties
+Adding New Properties
+_
+
 ```javascript
 person.nationality = "English";
 ```
 
-DELETING properties
+Deleting Properties
+_
+
 ```javascript
 var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
 delete person.age;   // or delete person["age"]; 
@@ -491,33 +562,36 @@ delete person.age;   // or delete person["age"];
 
 
 
-# TODO:
-### 5. JavaScript call vs. apply vs. bind vs. reduce
+#TODO: 1.
+### JavaScript call vs. apply vs. bind vs. reduce
 CALL - 
 with the `call()` method, you cna write a
 
 
 
-# TODO:
-### 6. What is callback
--
-"CALL US BACK"
+#TODO: 18.
+### What is callback
 
-##### what is callback
-simple: 
-A callback is a function that is to be executed after another function has finished executing
+- "CALL US BACK"
 
-more complexly:
-In JavaScript, functions are objects.
-Because of this, functions can take functions as arugments, and can be returned by other function (HIGHER-ORDER FUNCTIONS)
-ANY FUNCTION that is passed as an arugment is CALLBACK FUNCTION
+What is callback
+_
 
-##### why need callback
-JS is an event driven language
-==> instead of waiting for a response before moving on, JS will keep executing
-while listening for other events
+- Simply, A callback is a function that is to be executed after another function has finished executing
 
-what if the function sheduled to be executed before cannot be executed immediately?
+
+- More Complexly, In JavaScript, functions are objects. Because of this, functions can take functions as arugments, and can be returned by other function (HIGHER-ORDER FUNCTIONS)
+
+- ANY FUNCTION that is passed as an arugment is CALLBACK FUNCTION
+
+Why need Callback
+_
+
+- JS is an event driven language
+  - instead of waiting for a response before moving on, JS will keep executing while listening for other events
+
+- what if the function sheduled to be executed before cannot be executed immediately?
+
 ```javascript
 function first(){
   // Simulate a code delay
@@ -534,13 +608,13 @@ second();
 //2
 //1
 ```
-==> It is not that JS did not execute our functions in the order we wanted it to,
-it is instead that
-JS did not wait for a reponse from `first()` before movingon to execute `second()`
-**
-YOU CANNOT JUST CALL ONE FUNCTION AFTER ANOTHER AND HOPE THEY EXECUTE IN THE RIGHT ORDER
-**
-CALLBACK is a way to make sure certain code does not execute until other code has already finished execution
+
+- It is not that JS did not execute our functions in the order we wanted it to,
+it is instead that JS did not wait for a reponse from `first()` before movingon to execute `second()`
+
+- YOU CANNOT JUST CALL ONE FUNCTION AFTER ANOTHER AND HOPE THEY EXECUTE IN THE RIGHT ORDER
+
+- CALLBACK is a way to make sure certain code does not execute until other code has already finished execution
 
 EXAMPLE
 ```javascript
@@ -567,9 +641,10 @@ function alertFinished(){
 doHomework('math', alertFinished);
 ```
 
-WHY CALLBACK in API Request
---
-When you make requests to an API, you have to wait for the response before you can act on that response
+Why Callback in API Request
+-
+
+- When you make requests to an API, you have to wait for the response before you can act on that response
 
 ```javascript
 T.get('search/tweets', params, function(err, data, response) {
