@@ -1,22 +1,25 @@
 # React.js
 
-### What is React.js
+1. Composition vs Inheritance
+    - object composition
+    - inheritance
+    - {children} props
+
+2. React Component LifeCycle
+    - Mounting
+    - Updating
+    - Unmounting
+    - SetState()
 
 
 
-### Context API vs Redux for global props
 
-
-
-### What is WithQueryParams state
-
-
-
+# TODO: 
 ### How getDerivedStateFromProps works
-
 
 ### What is React composition
 https://www.robinwieruch.de/react-component-composition/
 
+### Context API vs Redux for global props
 
-ssss
+### What is WithQueryParams state

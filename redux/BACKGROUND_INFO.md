@@ -1,5 +1,7 @@
 # BACKGROUND INFO
 
+
+# TODO: 1.
 ### Redux vs. Flux
 Redux
 _
@@ -15,14 +17,17 @@ Flux
 _
 - Flux design pattern allows for MANY stores that each focus on a specific set of data
 
+
+# TODO: 2.
 ### What is Redux
 Redux Rule
-_
+
 - application state should be stored in a single immutable object
     - We will update this state object by replacing it entirely
 
 
-
+# TODO: 3.
+### What is Redux actions
 Actions
 _
 - In order to do this, we will need instructions about "what changes" `actions`
@@ -33,7 +38,8 @@ _
     - For example, when we dispatch an action like RATE_COLOR, we will need to know 1) what color to rate 2) what rating to apply to that color ...
 
 
-
+# TODO: 4.
+### What is Redux reducers
 Reducers
 _
 - Entire state is stored in a single object
@@ -42,6 +48,7 @@ _
 - `reducers` are functions that take the current state along with an action as arguments and use them to create and return a new state
 - We can compose reducers into one reducer that can handle updating the entire state of our app given any action
 - Each function is focused on a specific part of our state tree. FOR EXAMPLE,
+
 ```javascript
 import C from '../constants'
 export const color = (state={}, action) => {
@@ -55,8 +62,53 @@ export const sort = (state="SORTED_BY_DATE", action) => {
 }
 ```
 
+Example of reducers
+
+```javascript
+export const colors = (state=[], action) => {
+    switch(action.typ){
+        case C.ADD_COLOR:
+            return [
+                ...state,
+                color({}, action)
+            ]
+        case C.RATE_COLOR:
+            return state.map(
+                c => color(c, action)
+            )
+        // creates a new array by filtering out
+        case C.REMOVE_COLOR:
+            return state.filter(
+                c => c.id !== action.id
+            )
+        default:
+            return state
+    }
+}
+```
+
+*`combineReducers` combines all of the reducers into a single reducer*
+```javascript
+const store = createStore(
+    combineReducers({color, sort})
+)
+conosle.log(store.getState())
+// {
+//  colors: [],
+//  sort: "SORTED_BY_DATE"
+//}
+```
+
+```javascript
+const store = createStore(
+    combineReducers({color, sort}),
+    initialState 
+)
+```
 
 
+# TODO: 5.
+### What is Redux Dispatching actions
 Dispatching actions
 _
 - The only way to change the state of your application is by dispatching actions through the store
@@ -107,7 +159,8 @@ store.dispatch(sortColors("title"))
 ```
 
 
-
+# TODO: 6.
+### What is Redux Subscription to Stores
 Subscribing to Stores
 _
 - Stores allow you to subscribe handler functions that are invoked every time the store completes dispatching an action
@@ -120,16 +173,16 @@ store.subscribe(() =>
 ```
 
 
-
+# TODO: 1. 
 *No side effect in Reducers*
 - Generating random data, calling APIs, and other asynchronous processes should be handled outside of reducers
 
 
-
+# TODO: 2. 
 *Use of constants instead of a string*
 ```javascript
 const constants = {
-    SORT_COLORS: 'SORT_COLOR",
+    SORT_COLORS: "SORT_COLOR",
     //...
 }
 export default constants
@@ -142,42 +195,16 @@ import C from "./constants"
 ```
 
 
-
+# TODO: 3. 
 *ES7 object spread operator allows us to assign the value of the current state to a new object*
 
 
-
-*Example of reducers*
-```javascript
-export const colors = (state=[], action) => {
-    switch(action.typ){
-        case C.ADD_COLOR:
-            return [
-                ...state,
-                color({}, action)
-            ]
-        case C.RATE_COLOR:
-            return state.map(
-                c => color(c, action)
-            )
-        // creates a new array by filtering out
-        case C.REMOVE_COLOR:
-            return state.filter(
-                c => c.id !== action.id
-            )
-        default:
-            return state
-    }
-}
-```
-
-
-
+# TODO: 4.
 *Treat State as an Immutable Object*
 NO state.push({}) OR state[index].rating
 
 
-
+# TODO: 5.
 *getState method will return the present application state*
 ```javascript
 import {createStore} from 'redux'
@@ -185,25 +212,4 @@ import {color} from './reducers'
 
 const store = createStore(color)
 console.log(store.getState()) // {}
-```
-
-
-
-*`combineReducers` combines all of the reducers into a single reducer*
-```javascript
-const store = createStore(
-    combineReducers({color, sort})
-)
-conosle.log(store.getState())
-// {
-//  colors: [],
-//  sort: "SORTED_BY_DATE"
-//}
-```
-
-```javascript
-const store = createStore(
-    combineReducers({color, sort}),
-    initialState 
-)
 ```

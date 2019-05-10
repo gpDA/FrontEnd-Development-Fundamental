@@ -1,6 +1,6 @@
 # BACKGROUND INFO
 
-
+# TODO: 1.
 ### Composition vs Inheritance
 - Code reuse is primarily achieved through composition rather than inehritance in REACT
 
@@ -14,8 +14,8 @@
     - some components do not know their children ahead of time (special children props)
 
 
-### React component lifeCycle
-MOUTING
+### React Component LifeCycle
+- Mounting
     called in following order when an instance of a component is being created and inserted into the DOM
 
 1) constructor()
@@ -25,7 +25,7 @@ MOUTING
 
 xx componentWillMount() xx
 
-UPDATING
+- Updating
     update can be caused by changes to props or state. Called in following order
 
 1) static getDerivedStateFromProps()
@@ -36,24 +36,24 @@ UPDATING
 
 xx componentWillUpdate() xx
 
-UNMOUNTING
+- Unmounting
     this method is called when a component is being removed from the DOM
 
 1) componentWillUnmount()
-ssddd
 
-setState()
-- enqueues changes to the component state and tells React that this component and its children need to be re-rendered with the updated state
-- "request" rather than an immediate command to update the component
-- does not always immediately update the component.
-    (This makes reading this.state right after calling setState() a potential pitfall)
+- SetState()
+    - enqueues changes to the component state and tells React that this component and its children need to be re-rendered with the updated state
+    - "request" rather than an immediate command to update the component
+    - does not always immediately update the component.
+        (This makes reading this.state right after calling setState() a potential pitfall)
+
     Instead, use `componentDidUpdate` or a `setState` callback (setState(updater, callback)) guarantee to fire after the update has been applied
 
-If you need to et the state based on the previous state, read about the updater argument
+    - setState() will always lead to a re-render unless shouldComponentUpdate() returns `false`
 
-- setState() will always lead to a re-render unless shouldComponentUpdate() returns `false`
-
-- This form of `setState()` is also asynchronous, and multiple calls during the same cycle may be batched together
+    - This form of `setState()` is also asynchronous, and multiple calls during the same cycle may be batched together
     SOLUTION: updater function form
+
+    - Updater Argument : If you need to set the state based on the previous state, read about the updater argument
 
 
