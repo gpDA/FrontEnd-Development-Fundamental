@@ -69,3 +69,16 @@ SOLUTION: updater function form
 - Updater Argument : If you need to set the state based on the previous state, read about the updater argument
 
 
+
+
+
+
+
+
+
+
+#TODO: 1.
+### Fiber
+- Future versions of React will include Fiber, a reimplementation of React's core algorithm which is aimed at increasing rendering speed
+
+
