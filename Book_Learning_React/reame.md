@@ -4,7 +4,9 @@
 
 1. Arrow functions do not block `this`
 
-2. 
+2. Transpiling ES6
+
+3. ES6 Objects and Arrays
 
 
 
