@@ -3,9 +3,9 @@ https://codeburst.io/javascript-what-the-heck-is-a-callback-aba4da2deced
 
 
 # 순서
-## 1. JavaScript
-## 2. React
-## 3. Redux
+1. JavaScript
+2. React
+3. Redux
 
 
 
