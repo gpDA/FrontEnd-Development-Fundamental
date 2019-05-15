@@ -8,6 +8,12 @@
 
 3. ES6 Objects and Arrays
 
+4. Promises
+
+5. Classes
+
+6. ES6 Modules
+
 
 
 
