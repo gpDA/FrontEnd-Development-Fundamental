@@ -15,6 +15,13 @@
 6. ES6 Modules
 
 
+## FunctionalProgramming
+
+1. What It Means to Be Functional
+
+2. Imperative Versus Declarative
+
+
 
 
 ## Interesting Tips to note
