@@ -162,7 +162,7 @@ To build systems that want to access several domains for legitimaste reasons
 ### RPC (Remote Procedure Call)
 What is RPC
 -
-RPC is a protocl that one program can use to request a service from a program located in another computer on a network
+RPC is a protocol that one program can use to request a service from a program located in another computer on a network
 without having to understand the network's details (function call) OR (subroutine call)
 
 * RPC uses the client-server model
