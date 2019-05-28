@@ -1,6 +1,6 @@
 # BACKGROUND INFO
 
-#TODO: 1.
+#TODO:1.
 ### HTTP status
 
 EXAMPLE
@@ -15,7 +15,7 @@ _
 
 
 
-#TODO: 2.
+#TODO:2.
 ### HTTP response / request header
 
 
@@ -50,7 +50,7 @@ _
 
 
 
-#TODO: 3.
+#TODO:3.
 ### form submit via JS
 
 Example
@@ -84,7 +84,7 @@ application/x-www-form-urlencoded
 
 
 
-#TODO: 4.
+#TODO:4.
 ### XMLHttpRequest
 
 XMLHttpRequest
@@ -119,7 +119,7 @@ console.log(req.status, req.statusText);
 
 
 
-#TODO: 5.
+#TODO:5.
 ### Asynchronous Requests
 In Synchronous request,
 - program suspended while browser <--> server communicating 
@@ -145,7 +145,7 @@ console.log(JSON.parse(req.responseText));
 
 
 
-#TODO: 6.
+#TODO:6.
 ### HTTP Sandboxing
 -
 
@@ -158,7 +158,7 @@ To build systems that want to access several domains for legitimaste reasons
 
 
 
-#TODO: 7.
+#TODO:7.
 ### RPC (Remote Procedure Call)
 What is RPC
 -
@@ -216,7 +216,7 @@ BENEFIT
 
 
 
-#TODO: 8.
+#TODO:8.
 ### 비동기적 프로그래밍
 사용자의 행동은 전적으로 비동기적이다. (사용자가 언제 클릭할지 / 터치할지 / 전혀 모른다)
 
@@ -240,7 +240,7 @@ JS의 비동기적 프로그래밍
 
 
 
-#TODO: 9.
+#TODO:9.
 ### setInterval 과 clearInterval
 setInterval vs. clearInterval
 _
@@ -262,7 +262,7 @@ const intervalId = setInterval(function(){
 
 
 
-#TODO: 10.
+#TODO:10.
 ### 스코프와 비동기적 실행
 
 - 함수를 호출하면 항상 클로저가 만들어진다. (매개변수를 포함해 함수 안에 만든 변수는 모두 무언가가 자신에 접근할 수 있는 한 계속 존재)
@@ -364,7 +364,7 @@ class Countdown extends EventEmitter{
 
 
 
-#TODO: 11.
+#TODO:11.
 ### 오류 우선 콜백 (error-first callback)
 
 - 콜백을 사용하면 예외 처리가 어려워지므로, 콜백과 관련된 에러를 처리할 방법의 표준
@@ -387,7 +387,7 @@ fs.readFile(fname, function(err,data){
 promise를 사용하지 않으면 오류 우선 콜백은 노드 개발의 표준!!
 
 
-#TODO: 12.
+#TODO:12.
 ### 함수 --> 순수 함수
 순수함수 장점
 _
@@ -475,7 +475,7 @@ v가 함수 일때, v instanceof Object => true
 
 
 
-# TODO: 13.
+# TODO:13.
 ### IIFE / 비동기적 코드
 - IIFE를 이용해서 클로저를 만들 수 있다
 
@@ -529,14 +529,14 @@ for(let i=5; i>=0; i--){
 ```
 
 
-#TODO: 1.
+#TODO:1.
 https://davidwalsh.name/es6-generators
 ### 제너레이터
 제너레이터는 함수와 호출자 사이의 양방향 통신을 가능하게 한다
 제너레이터는 원래 동기적인 성격 / 프로미스와 결합하면 비동기 코드를 효율적으로 관리할 수 있다
 
 
-#TODO: 2.
+#TODO:2.
 ### 변수로서의 함수
 ```javascript
 ```

@@ -87,7 +87,7 @@ SOLUTION: updater function form
 
 
 
-#TODO: 1.
+#TODO:1.
 ### Fiber
 - Future versions of React will include Fiber, a reimplementation of React's core algorithm which is aimed at increasing rendering speed
 
