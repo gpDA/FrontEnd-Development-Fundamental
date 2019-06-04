@@ -78,7 +78,7 @@ https://codeburst.io/javascript-what-the-heck-is-a-callback-aba4da2deced
 
 ++++++++++++++++++++++++++++++++++++
 
-ddhhh
+
 # React
 1. Composition vs Inheritance
 2. React Component LifeCycle
