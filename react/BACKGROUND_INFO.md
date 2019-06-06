@@ -5,7 +5,6 @@
 Composition
 _
 - Code reuse is primarily achieved through composition rather than inehritance in REACT
-
 - object composition is a way to combine objects or data types into more complex ones
 
 Inheritance 
@@ -15,7 +14,6 @@ _
 {children} props
 _
 - Sidebar / Dialog ...
-
 - some components do not know their children ahead of time (special children props)
 
 
@@ -80,9 +78,6 @@ SOLUTION: updater function form
 - Context is designed to share data that can be considered "global" for a tree of React components (e.g., the current authenticated user, theme, or preferred language)
 
 
-
-
-ddd
 
 
 
