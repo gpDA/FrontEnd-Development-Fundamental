@@ -222,3 +222,6 @@ import {color} from './reducers'
 const store = createStore(color)
 console.log(store.getState()) // {}
 ```
+
+
+dd
