@@ -561,6 +561,206 @@ delete person.age;   // or delete person["age"];
 ```
 
 
+#TODO: 24.
+### Immutable.js
+
+GITHUB documentation summary
+
+Characteristics
+- Data cannot be changed once created
+- It does not update the the data in-place RATHER yield new updated data
+- has no dependency (maintain PREDICTABILITY in Browser)
+
+
+Data Types
+- List
+- Stack
+- Map
+- OrderedMap
+- Set
+- OrderedSet
+- Record
+- (lazy) Seq. (map // filter) --> allow efficient changing of collection method
+
+
+Function
+- `.equals()` ==> ===
+```javascript
+const { Map } = require('immutable')
+const map1 = Map({a: 1, b: 2, c: 3})
+const map2 = map1.set('b',2)
+
+console.log(map1.equals(map2)) // true
+console.log(map1 === map2) // true
+```
+
+- copy
+* If an object is immutable, it can be "copied" simply by making another reference to it instead of copying the entire object
+* Because a reference is much smaller than the object itself
+  this results in 1) memory savings 2) potential boost in execution speed for programs
+```javascript
+const map = Map({
+  a:1,
+  b:2,
+  c:3
+})
+const mapCopy = map
+console.log(mapCopy)
+// Map { "a":1, "b":2, "c":3 }
+```
+
+- can use function that MUTATE the collection
+* the methods which would mutate the collection, like `push`, `set`, `unshift`, `splice` return a NEW IMMUTABLE COLLECTION
+```javascript
+const { List } = require('immutable')
+const list1 = List([1,2])
+const list2 = list1.push(3,4,5)
+const list3 = list2.unshift(0)
+
+console.log(list1) // List [1,2]
+console.log(list2) // List [1,2,3,4,5]
+console.log(list3) // List [0,1,2,3,4,5]
+```
+
+
+- example of map of Map
+```javascript
+const alpha = Map({a:1, b:2, c:3, d:4})
+const alphaOutput = alpha.map((v,k) => k.toUpperCase()).join())
+console.log(alphaOutput) // 'A,B,C,D'
+```
+
+
+- Convert from raw JS objects
+* Immutable.js can treat any JS Array or Object as a Collection
+```javascript
+const map1 = Map({a:1, b:2, c:3, d:4})
+const map2 = Map({c:10, a:20, t:30})
+
+const map3 = map1.merge(map2) --> find key in map2 If Exists, get the value of map2. If not, get the value of map1
+// Map {"a": 20, "b":2, "c":10, "d":4, "t":30}
+
+const map4 = map2.merge(map1) --> find key in map1 If Exists, get the value of map2. If not, get the value of map2
+// Map {"c":3, "a":1, "t":30, "b":2, "d":4}
+```
+
+- Convert from raw JS array
+```javascript
+const list1 = List([1,2,3])
+const list2 = List([4,5,6])
+const list3 = List([7,8,9])
+
+const array = list1.concat(list2, list3)
+// List [1,2,3,4,5,6,7,8,9]
+```
+
+
+- Seq
+* Because Seq evaluates lazily and does not cache intermediate results, these operations can be extremely efficient
+```javascript
+const { Seq } = require('immutable')
+const myObject = {a:1, b:2, c:3}
+const result = Seq(myObject).map(x => x*x).toObject()
+console.log(result) // {a:1, b:4, c:9}
+```
+
+
+- fromJS
+* KEEP IN MIND, when using JS objects to construct Immutable Maps,
+  JS Object properties are always STRINGS (even if written in a quote-less shorthand)
+* Immutable Maps accept keys of any type
+* Property access for JS Object first converts the key to a STRING
+* BUT since Immutable Map kesy can be of any type of the argument to `get()` is not altered
+```javascript
+const obj = {1:"one"}
+// JS Object
+console.log(obj["1"], obj[1]) // "one", "one"
+
+// vs 
+
+// Immutable Maps
+const { fromJS } = require('immutable')
+console.log(map.get("1"), map.get(1)) // "one", undefined
+```
+
+- Convert back to raw JS objects
+
+* Shallowly Using `toArray()` && `toObject()`
+* Deeply Using `toJSON()`
+* All Immutable Collections also implement `toJSON()` allowing them to be passed to
+  `JSON.stringify` directly
+```javascript
+const { Map, List } = require('immutable')
+const deep = map({a:1, b:2, c: List([3,4,5])})
+console.log(deep.toObject()) // {a:1, b:2, c: List [3,4,5]}
+console.log(deep.toArray()) // [1,2, List [ 3, 4, 5]]
+console.log(deep.toJS()) // {a:1, b:2, c: [3,4,5]}
+JSON.stringify(deep) // '{"a":1,"b":2,"c":[3,4,5]}'
+```
+
+
+- Spreading into an Array
+```javascript
+const aList = List([1,2,3])
+const anArray = [0, ...aList, 4,5] // [0,1,2,3,4,5]
+```
+
+
+- Nested Structures
+METHODS available for `List`, `Map`, `OrderedMap`
+1) mergeDeep
+2) getIn
+3) setIn
+4) updateIn
+
+1) mergeDeep
+```javascript
+const nested = fromJS({a: {b: {c: [3,4,5]}}})
+const nested2 = nested.mergeDeep({a: {b: {d: 6}}})
+// Map { a: Map { b: Map { c: List [3,4,5], d: 6}}}
+```
+
+2) getIn
+```javascript
+console.log(nested2.getIn(['a',;'b',;'d'])) // 6
+```
+
+4) updateIn
+```javascript
+const nested3 = nested2.updateIn(['a','b','d'], value => value + 1)
+console.log(nested3)
+// Map {a: Map {b: Map {c: List [3,4,5], d: 7}}}
+
+const nested4 = nested3.updateIn(['a','b','c'], list => list.push(6))
+// Map {a: Map {b: Map {c: List [3,4,5,6], d: 7}}}
+```
+
+
+- Equality treats Collections as Values
+* Immutable.js collections are treated as pure data values
+  differs from JS's typical `reference` equal (`===` OR `==`) for Objects and Arrays, which only determines if two variables represent references to the same object instance
+```javascript
+// typical JS Object
+const obj1 = {a:1, b:2, c:3}
+const obj2 = {a:1, b:2, c:3}
+obj1 !== obj2 // two different instances are always NOT equal with ===
+
+// Map (Immutable.js)
+const { Map, is } = require('immutable')
+const map1 = Map({a:1, b:2, c:3})
+const map2 = Map({a:1, b:2, c:3})
+map1.equals(map2) // true (same value)
+is(map1, map2) // true (FUNCTION comparison)
+```
+
+
+- Lazy Seq
+* Seq is immutable (Once a Seq is created, it cannot be changed. ANY mutative method called on a `Seq` will return a new `Seq`)
+* Seq is lazy 
+
+
+
+
 
 #TODO: 1.
 ### JavaScript call vs. apply vs. bind vs. reduce
