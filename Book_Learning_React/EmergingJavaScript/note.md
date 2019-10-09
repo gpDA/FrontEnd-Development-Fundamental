@@ -1,32 +1,4 @@
 
-#TODO: 1.
-### Arrow functions do not block `this`
-For example, `this` becomes something else in the `setTimeout` callback, not the `tahoe` object
-
-```javascript
-var tahoe = {
-    resorts: ["kirkwood","squaw","alpine","heavely","northstar"],
-    print: function(delay=1000){
-        setTimeout(function(){
-            console.log(this.resorts.join(','))
-        }, delay)
-    }
-}
-tahoe.print() // Cannot read property 'join' of undefined
-```
-
-This error is thrown because it is trying to use the `.join` method on what `this` is. In this case, it is the `window object`. Alternatively, we can use the `arrow function` syntax to protect the scope of `this`
-
-```javascript
-var tahoe = {
-    resorts: ["kirkwood","squaw","alpine","heavenly","northstar"],
-    print: function(delay=1000){
-        setTimeout(() => {
-            console.log(this.resorts.join(","))
-        }, delay)
-    }
-}
-```
 
 #### TAKEAWAY : 
 `Arrow functions` do not block off the scope of `this`
